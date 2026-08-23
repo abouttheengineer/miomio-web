@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>プライバシーポリシー — miomio</title>
+  <meta name="description" content="miomio プライバシーポリシー">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg:      #fdfafc;
+      --fg:      #1a1118;
+      --fg-2:    #6b4456;
+      --fg-3:    #b08898;
+      --rose:    #bf5b77;
+      --rose-lt: #faeaf0;
+      --border:  #eedce4;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) {
+        --bg:      #180f14;
+        --fg:      #f2e8ec;
+        --fg-2:    #c9a0b2;
+        --fg-3:    #856070;
+        --rose:    #e07a96;
+        --rose-lt: #3a1828;
+        --border:  #3d1f2e;
+      }
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--fg);
+      font-family: "Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic","Meiryo",-apple-system,sans-serif;
+      font-size: 15px;
+      line-height: 1.9;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: var(--rose); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(253,250,252,0.94);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 32px;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) .nav { background: rgba(24,15,20,0.95); }
+    }
+    .nav__inner {
+      max-width: 860px; margin: 0 auto;
+      height: 60px; display: flex; align-items: center; justify-content: space-between;
+    }
+    .logo { display: flex; align-items: center; text-decoration: none; }
+    .logo img { height: 28px; width: auto; }
+    .nav__back { font-size: 13px; color: var(--fg-3); }
+
+    .page {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 80px 32px 120px;
+    }
+    .page__eyebrow {
+      font-size: 10px; letter-spacing: 0.24em; text-transform: uppercase;
+      color: var(--rose); display: block; margin-bottom: 16px;
+    }
+    .page__title {
+      font-family: "Hiragino Mincho ProN","YuMincho",serif;
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      font-weight: 400; letter-spacing: 0.03em;
+      margin-bottom: 12px; color: var(--fg);
+    }
+    .page__date { font-size: 13px; color: var(--fg-3); margin-bottom: 64px; }
+
+    .section {
+      margin-bottom: 56px;
+      padding-bottom: 56px;
+      border-bottom: 1px solid var(--border);
+    }
+    .section:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+    .section__title {
+      font-family: "Hiragino Mincho ProN","YuMincho",serif;
+      font-size: 1.1rem; font-weight: 500; letter-spacing: 0.04em;
+      color: var(--fg); margin-bottom: 20px;
+      display: flex; align-items: baseline; gap: 12px;
+    }
+    .section__num { font-size: 11px; letter-spacing: 0.1em; color: var(--rose); }
+    .section p { color: var(--fg-2); margin-bottom: 14px; }
+    .section p:last-child { margin-bottom: 0; }
+
+    .list {
+      list-style: none;
+      display: flex; flex-direction: column; gap: 10px;
+      margin: 16px 0;
+    }
+    .list li {
+      display: flex; gap: 12px;
+      font-size: 14px; color: var(--fg-2);
+    }
+    .list li::before {
+      content: '—'; color: var(--rose); flex-shrink: 0;
+      font-size: 13px; line-height: 1.9;
+    }
+
+    .highlight {
+      background: var(--rose-lt);
+      border-left: 3px solid var(--rose);
+      border-radius: 0 8px 8px 0;
+      padding: 20px 24px; margin: 20px 0;
+    }
+    .highlight p { color: var(--fg-2); margin-bottom: 10px; }
+    .highlight p:last-child { margin-bottom: 0; }
+
+    .info-table {
+      width: 100%; border-collapse: collapse;
+      margin: 20px 0; font-size: 14px;
+    }
+    .info-table th, .info-table td {
+      padding: 13px 16px;
+      border: 1px solid var(--border);
+      text-align: left; color: var(--fg-2);
+      vertical-align: top;
+    }
+    .info-table th {
+      background: var(--rose-lt);
+      color: var(--fg); font-weight: 600;
+      font-size: 13px; width: 30%;
+    }
+
+    .footer {
+      text-align: center;
+      padding: 40px 32px;
+      border-top: 1px solid var(--border);
+      font-size: 13px; color: var(--fg-3);
+    }
+
+    @media (max-width: 600px) {
+      .page { padding: 56px 24px 80px; }
+      .nav { padding: 0 24px; }
+      .info-table th { width: auto; }
+    }
+  </style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav__inner">
+    <a href="/" class="logo">
+      <img src="assets/images/logo.svg" alt="miomio">
+    </a>
+    <a href="/" class="nav__back">← トップに戻る</a>
+  </div>
+</nav>
+
+<main class="page">
+  <span class="page__eyebrow">Privacy Policy</span>
+  <h1 class="page__title">プライバシーポリシー</h1>
+  <p class="page__date">制定日：2025年1月1日</p>
+
+  <div class="section">
+    <h2 class="section__title"><span class="section__num">第1条</span>事業者情報</h2>
+    <p>合同会社 About The Engineer（以下「当社」）は、本サービス「miomio」を通じて取得する個人情報の取り扱いについて、以下のとおりプライバシーポリシーを定めます。</p>
+    <table class="info-table">
+      <tr><th>事業者名</th><td>合同会社 About The Engineer</td></tr>
+      <tr><th>サービス名</th><td>miomio</td></tr>
+      <tr><th>お問い合わせ</th><td><a href="/#contact-form">お問い合わせフォーム</a></td></tr>
+    </table>
+  </div>
+
+  <div class="section">
+    <h2 class="section__title"><span class="section__num">第2条</span>収集する個人情報</h2>
+    <p>当社は、本サービスの提供にあたり、以下の個人情報を収集することがあります。</p>
+    <ul class="list">
+      <li>氏名・ニックネーム</li>
+      <li>メールアドレス</li>
+      <li>生年月日・年齢・性別</li>
+      <li>身長・体重・健康目標などの身体情報</li>
+      <li>食事記録（テキスト・写真）</li>
+      <li>アレルギー・食の制限に関する情報</li>
+      <li>お支払いに関する情報（決済代行会社を通じて処理されます）</li>
+      <li>アクセスログ・Cookie情報・デバイス情報</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2 class="section__title"><span class="section__num">第3条</span>個人情報の利用目的</h2>
+    <p>収集した個人情報は、以下の目的にのみ使用します。</p>
+    <ul class="list">
+      <li>本サービス（栄養コーチング）の提供・運営</li>
+      <li>管理栄養士とのマッチングおよびチャットサポート</li>
+      <li>食事記録の分析・栄養アドバイスの提供</li>
+      <li>月額課金・決済処理</li>
+      <li>サービスに関するお知らせ・重要連絡の送信</li>
+      <li>お問い合わせへの対応</li>
+      <li>サービス品質の改善・不正利用の防止</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2 class="section__title"><span class="section__num">第4条</span>第三者への提供</h2>
+    <div class="highlight">
+      <p>当社は、収集した個人情報を、以下の場合を除き第三者に提供・開示しません。</p>
+    </div>
+    <ul class="list">
+      <li><strong>決済処理：</strong>お支払い情報の処理に必要な範囲で、決済代行会社に提供します。クレジットカード情報は当社のサーバーには保存されません。</li>
+      <li><strong>法令に基づく場合：</strong>裁判所・警察等の公的機関から法令に基づく要請があった場合。</li>
+      <li><strong>ご本人の同意がある場合：</strong>利用者本人から明示的な同意を得た場合。</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2 class="section__title"><span class="section__num">第5条</span>Cookieの使用</h2>
+    <p>本サービスでは、利便性向上のためCookieを使用することがあります。ブラウザの設定によりCookieを無効にすることが可能ですが、一部の機能が正常に動作しなくなる場合があります。</p>
+    <p>また、将来的にアクセス解析ツール（Google アナリティクス等）を導入する場合は、本ポリシーを更新のうえお知らせします。</p>
+  </div>
+
+  <div class="section">
+    <h2 class="section__title"><span class="section__num">第6条</span>個人情報の管理・保管</h2>
+    <ul class="list">
+      <li>収集した個人情報は、適切なセキュリティ対策を講じたサーバーで管理します。</li>
+      <li>退会後は、法令で定められた保存期間を除き、速やかに個人情報を削除します。</li>
+      <li>従業員・管理栄養士には、業務上必要な範囲でのみ情報へのアクセスを許可します。</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2 class="section__title"><span class="section__num">第7条</span>開示・訂正・削除の請求</h2>
+    <p>利用者は、ご自身の個人情報について開示・訂正・削除を請求する権利を有します。お問い合わせフォームよりご連絡ください。本人確認のうえ、速やかに対応いたします。</p>
+  </div>
+
+  <div class="section">
+    <h2 class="section__title"><span class="section__num">第8条</span>未成年の利用</h2>
+    <p>18歳未満の方が本サービスをご利用になる場合は、保護者の同意を得たうえでご登録ください。</p>
+  </div>
+
+  <div class="section">
+    <h2 class="section__title"><span class="section__num">第9条</span>プライバシーポリシーの改定</h2>
+    <p>当社は、法令の変更やサービス内容の更新に応じて、本ポリシーを改定することがあります。重要な変更がある場合は、サービス内またはメールにてお知らせします。</p>
+  </div>
+
+  <div class="section">
+    <h2 class="section__title"><span class="section__num">第10条</span>お問い合わせ</h2>
+    <p>本ポリシーに関するご質問・ご意見は、下記よりお問い合わせください。</p>
+    <table class="info-table">
+      <tr><th>事業者名</th><td>合同会社 About The Engineer</td></tr>
+      <tr><th>サービス名</th><td>miomio</td></tr>
+      <tr><th>お問い合わせ</th><td><a href="/#contact-form">お問い合わせフォーム</a></td></tr>
+    </table>
+  </div>
+
+</main>
+
+<footer class="footer">
+  © 2025 miomio / 合同会社 About The Engineer. All rights reserved.
+</footer>
+
+</body>
+</html>
