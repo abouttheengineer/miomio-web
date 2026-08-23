@@ -16,6 +16,24 @@ document.querySelectorAll('.faq-item').forEach(item => {
   });
 });
 
+/* ── Program Tabs ────────────────────────────────────────── */
+const progTabs = document.querySelector('.prog-tabs');
+if (progTabs) {
+  progTabs.addEventListener('click', e => {
+    const tab = e.target.closest('[data-panel]');
+    if (!tab) return;
+    document.querySelectorAll('.prog-tab').forEach(t => {
+      t.classList.remove('prog-tab--active');
+      t.setAttribute('aria-selected', 'false');
+    });
+    document.querySelectorAll('.prog-panel').forEach(p => p.classList.remove('prog-panel--active'));
+    tab.classList.add('prog-tab--active');
+    tab.setAttribute('aria-selected', 'true');
+    const panel = document.getElementById('panel-' + tab.dataset.panel);
+    if (panel) panel.classList.add('prog-panel--active');
+  });
+}
+
 /* ── Sticky mobile CTA ───────────────────────────────────── */
 const hero = document.querySelector('.hero');
 const stickyCTA = document.querySelector('.sticky-cta');
