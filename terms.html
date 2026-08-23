@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>利用規約 — miomio</title>
+  <meta name="description" content="miomio サービス利用規約">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg:      #fdfafc;
+      --fg:      #1a1118;
+      --fg-2:    #6b4456;
+      --fg-3:    #b08898;
+      --rose:    #bf5b77;
+      --rose-lt: #faeaf0;
+      --border:  #eedce4;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) {
+        --bg:      #180f14;
+        --fg:      #f2e8ec;
+        --fg-2:    #c9a0b2;
+        --fg-3:    #856070;
+        --rose:    #e07a96;
+        --rose-lt: #3a1828;
+        --border:  #3d1f2e;
+      }
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--fg);
+      font-family: "Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic","Meiryo",-apple-system,sans-serif;
+      font-size: 15px;
+      line-height: 1.9;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: var(--rose); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* Nav */
+    .nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(253,250,252,0.94);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 32px;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) .nav { background: rgba(24,15,20,0.95); }
+    }
+    .nav__inner {
+      max-width: 860px; margin: 0 auto;
+      height: 60px; display: flex; align-items: center; justify-content: space-between;
+    }
+    .logo {
+      display: flex; align-items: center;
+      font-family: "Hiragino Mincho ProN","YuMincho",serif;
+      font-weight: 600; font-size: 16px; letter-spacing: 0.1em; color: var(--fg);
+      text-decoration: none;
+    }
+    .logo img { height: 28px; width: auto; }
+    .nav__back {
+      font-size: 13px; color: var(--fg-3);
+      display: flex; align-items: center; gap: 6px;
+    }
+
+    /* Page */
+    .page {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 80px 32px 120px;
+    }
+    .page__eyebrow {
+      font-size: 10px; letter-spacing: 0.24em; text-transform: uppercase;
+      color: var(--rose); display: block; margin-bottom: 16px;
+    }
+    .page__title {
+      font-family: "Hiragino Mincho ProN","YuMincho",serif;
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      font-weight: 400; letter-spacing: 0.03em;
+      margin-bottom: 12px; color: var(--fg);
+    }
+    .page__date {
+      font-size: 13px; color: var(--fg-3); margin-bottom: 64px;
+    }
+
+    /* Sections */
+    .section {
+      margin-bottom: 56px;
+      padding-bottom: 56px;
+      border-bottom: 1px solid var(--border);
+    }
+    .section:last-child {
+      border-bottom: none; margin-bottom: 0; padding-bottom: 0;
+    }
+    .section__title {
+      font-family: "Hiragino Mincho ProN","YuMincho",serif;
+      font-size: 1.1rem; font-weight: 500; letter-spacing: 0.04em;
+      color: var(--fg); margin-bottom: 20px;
+      display: flex; align-items: baseline; gap: 12px;
+    }
+    .section__num {
+      font-size: 11px; letter-spacing: 0.1em;
+      color: var(--rose); font-family: inherit;
+    }
+    .section p { color: var(--fg-2); margin-bottom: 14px; }
+    .section p:last-child { margin-bottom: 0; }
+
+    /* Highlight box */
+    .highlight {
+      background: var(--rose-lt);
+      border-left: 3px solid var(--rose);
+      border-radius: 0 8px 8px 0;
+      padding: 20px 24px;
+      margin: 20px 0;
+    }
+    .highlight p { color: var(--fg-2); margin-bottom: 10px; }
+    .highlight p:last-child { margin-bottom: 0; }
+
+    /* List */
+    .list {
+      list-style: none;
+      display: flex; flex-direction: column; gap: 10px;
+      margin: 16px 0;
+    }
+    .list li {
+      display: flex; gap: 12px;
+      font-size: 14px; color: var(--fg-2);
+    }
+    .list li::before {
+      content: '—';
+      color: var(--rose); flex-shrink: 0; font-size: 13px; line-height: 1.9;
+    }
+
+    /* Plan table */
+    .plan-table {
+      width: 100%; border-collapse: collapse;
+      margin: 20px 0; font-size: 14px;
+    }
+    .plan-table th, .plan-table td {
+      padding: 14px 16px;
+      border: 1px solid var(--border);
+      text-align: left;
+      color: var(--fg-2);
+    }
+    .plan-table th {
+      background: var(--rose-lt);
+      color: var(--fg);
+      font-weight: 600; font-size: 13px;
+    }
+    .plan-table td:first-child { color: var(--fg); font-weight: 500; }
+
+    /* Footer */
+    .footer {
+      text-align: center;
+      padding: 40px 32px;
+      border-top: 1px solid var(--border);
+      font-size: 13px; color: var(--fg-3);
+    }
+
+    @media (max-width: 600px) {
+      .page { padding: 56px 24px 80px; }
+      .nav { padding: 0 24px; }
+      .plan-table { font-size: 13px; }
+      .plan-table th, .plan-table td { padding: 10px 12px; }
+    }
+  </style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav__inner">
+    <a href="/" class="logo">
+      <img src="assets/images/logo.svg" alt="miomio">
+    </a>
+    <a href="/" class="nav__back">← トップに戻る</a>
+  </div>
+</nav>
+
+<main class="page">
+  <span class="page__eyebrow">Terms of Service</span>
+  <h1 class="page__title">利用規約</h1>
+  <p class="page__date">制定日：2025年1月1日</p>
+
+  <div class="section">
+    <h2 class="section__title"><span class="section__num">第1条</span>適用範囲</h2>
+    <p>本規約は、miomio（以下「本サービス」）が提供するパーソナル栄養コーチングサービスの利用に関する条件を定めるものです。利用者は、本規約に同意のうえ本サービスをご利用ください。</p>
+    <p>本サービスへの登録をもって、本規約に同意したものとみなします。</p>
+  </div>
+
+  <div class="section">
+    <h2 class="section__title"><span class="section__num">第2条</span>無料トライアル</h2>
+    <p>新規登録から<strong>7日間</strong>は無料でご利用いただけます。</p>
+    <ul class="list">
+      <li>無料トライアル期間中にキャンセルした場合、料金は一切発生しません。</li>
+      <li>無料トライアル終了後は、自動的に選択いただいたプランの月額課金が開始されます。</li>
+      <li>クレジットカードの登録は、トライアル開始時に必要です。</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2 class="section__title"><span class="section__num">第3条</span>料金・お支払い</h2>
+    <p>本サービスの月額料金は以下のとおりです。</p>
+    <table class="plan-table">
+      <thead>
+        <tr><th>プラン</th><th>月額料金（税込）</th><th>主な内容</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>ライト</td><td>¥5,000</td><td>月4回チャット相談・食事記録分析</td></tr>
+        <tr><td>プレミアム</td><td>¥15,000</td><td>無制限チャット・ビデオ相談・個別プラン</td></tr>
+      </tbody>
+    </table>
+    <ul class="list">
+      <li>お支払いはクレジットカード（VISA / Mastercard / JCB 等）のみ対応しています。</li>
+      <li>毎月、サービス開始日を基準に月額料金が自動請求されます。</li>
+      <li>料金はすべて税込表示です。</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2 class="section__title"><span class="section__num">第4条</span>キャンセル・解約</h2>
+    <div class="highlight">
+      <p><strong>サービス開始後1ヶ月間はキャンセルできません。</strong>この期間中に解約のお申し出があっても、解約は受理されません。</p>
+      <p>また、いかなる理由においても、お支払いいただいた料金の返金はいたしません。</p>
+    </div>
+    <p>2ヶ月目以降は、以下の手順で解約いただけます。</p>
+    <ul class="list">
+      <li>次回請求日の<strong>1週間前まで</strong>に、アプリまたはお問い合わせフォームより解約をお申し出ください。</li>
+      <li>期日を過ぎた場合、翌月分の料金が発生します。</li>
+      <li>解約後も、当月末日までサービスをご利用いただけます。</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2 class="section__title"><span class="section__num">第5条</span>プラン変更</h2>
+    <ul class="list">
+      <li>プランの変更（アップグレード・ダウングレード）は、マイページよりいつでも申請いただけます。</li>
+      <li>変更は<strong>翌月の更新日</strong>から反映されます。</li>
+      <li>変更月の日割り計算・差額返金は行いません。</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2 class="section__title"><span class="section__num">第6条</span>禁止事項</h2>
+    <p>利用者は、以下の行為を行ってはなりません。</p>
+    <ul class="list">
+      <li>栄養士への誹謗中傷・ハラスメント行為</li>
+      <li>他の利用者や第三者を傷つける情報の投稿・送信</li>
+      <li>本サービスを通じた営業活動・広告行為</li>
+      <li>アカウントの第三者への譲渡・共有</li>
+      <li>その他、運営が不適切と判断する行為</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2 class="section__title"><span class="section__num">第7条</span>強制退会</h2>
+    <p>利用者が本規約に違反した場合、または運営が利用継続を不適切と判断した場合、事前通知なく強制的に退会させることがあります。</p>
+    <div class="highlight">
+      <p>強制退会の場合、未利用期間の返金は一切行いません。</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2 class="section__title"><span class="section__num">第8条</span>サービスの変更・停止</h2>
+    <ul class="list">
+      <li>運営は、事前告知のうえでサービス内容を変更・追加・停止する場合があります。</li>
+      <li>システム障害・メンテナンス等によるサービス停止について、運営は損害賠償責任を負いません。</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2 class="section__title"><span class="section__num">第9条</span>免責事項</h2>
+    <p>本サービスの栄養アドバイスは、管理栄養士による食事・栄養に関するサポートを目的としています。医療行為・医学的診断にはあたりません。</p>
+    <ul class="list">
+      <li>体調不良・疾病に関するご相談は、医療機関をご受診ください。</li>
+      <li>本サービスの利用に起因するいかなる損害についても、運営の故意・重過失による場合を除き、責任を負いません。</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2 class="section__title"><span class="section__num">第10条</span>規約の変更</h2>
+    <p>運営は、法令の変更やサービス内容の更新に応じて、本規約を改定することがあります。変更後の規約はウェブサイト上に掲載し、掲載時点で効力を生じるものとします。</p>
+  </div>
+
+  <div class="section">
+    <h2 class="section__title"><span class="section__num">第11条</span>準拠法・管轄裁判所</h2>
+    <p>本規約は日本法に準拠します。本サービスに関する紛争については、東京地方裁判所を第一審の専属的合意管轄裁判所とします。</p>
+  </div>
+
+</main>
+
+<footer class="footer">
+  © 2025 miomio. All rights reserved.
+</footer>
+
+</body>
+</html>
