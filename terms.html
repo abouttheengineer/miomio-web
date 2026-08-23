@@ -159,6 +159,12 @@
       border-top: 1px solid var(--border);
       font-size: 13px; color: var(--fg-3);
     }
+    .footer__links {
+      display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 20px;
+      margin-bottom: 16px;
+    }
+    .footer__links a { color: var(--fg-3); font-size: 12px; }
+    .footer__links a:hover { color: var(--rose); }
 
     @media (max-width: 600px) {
       .page { padding: 56px 24px 80px; }
@@ -292,7 +298,12 @@
 </main>
 
 <footer class="footer">
-  © 2025 miomio. All rights reserved.
+  <div class="footer__links">
+    <a href="terms.html">利用規約</a>
+    <a href="privacy.html">プライバシーポリシー</a>
+    <a href="tokusho.html">特定商取引法に基づく表記</a>
+  </div>
+  © 2025 miomio / 合同会社 About The Engineer. All rights reserved.
 </footer>
 
 </body>
