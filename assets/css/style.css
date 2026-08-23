@@ -409,6 +409,42 @@ h1, h2 {
 
 .step__body p { font-size: 14px; color: var(--fg-2); line-height: 1.85; }
 
+/* ── For Whom ────────────────────────────────────────────── */
+.forwhom-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.forwhom-card {
+  background: var(--card);
+  border: 1.5px solid var(--border);
+  border-radius: 20px;
+  padding: 36px 32px;
+}
+
+.forwhom-card__icon {
+  width: 48px; height: 48px;
+  border-radius: 14px;
+  background: var(--rose-lt);
+  color: var(--rose);
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 20px;
+}
+
+.forwhom-card h3 {
+  font-size: 1rem; font-weight: 700;
+  color: var(--fg); margin-bottom: 12px; line-height: 1.5;
+}
+
+.forwhom-card p {
+  font-size: 13px; color: var(--fg-2); line-height: 1.85;
+}
+
+@media (max-width: 860px) {
+  .forwhom-grid { grid-template-columns: 1fr; }
+}
+
 /* ── Programs ────────────────────────────────────────────── */
 .prog-tabs {
   display: grid;
