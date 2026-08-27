@@ -485,10 +485,10 @@
     errorMsg.classList.remove('visible');
 
     try {
-      await fetch(endpoint, {
-        method: 'POST',
-        mode: 'no-cors',
-        body: new FormData(form)
+      const params = new URLSearchParams(new FormData(form));
+      await fetch(endpoint + '?' + params.toString(), {
+        method: 'GET',
+        mode: 'no-cors'
       });
       form.style.display = 'none';
       successMsg.classList.add('visible');
