@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" href="assets/images/icon.png" type="image/png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>サービス申し込み — miomio</title>
+  <meta name="description" content="miomio パーソナル栄養コーチング サービス申し込みフォーム">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg:      #fdfafc;
+      --fg:      #1a1118;
+      --fg-2:    #6b4456;
+      --fg-3:    #b08898;
+      --rose:    #bf5b77;
+      --rose-lt: #faeaf0;
+      --border:  #eedce4;
+      --input-bg: #fff;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) {
+        --bg:      #180f14;
+        --fg:      #f2e8ec;
+        --fg-2:    #c9a0b2;
+        --fg-3:    #856070;
+        --rose:    #e07a96;
+        --rose-lt: #3a1828;
+        --border:  #3d1f2e;
+        --input-bg: #221018;
+      }
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--fg);
+      font-family: "Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic","Meiryo",-apple-system,sans-serif;
+      font-size: 15px;
+      line-height: 1.9;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: var(--rose); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* Nav */
+    .nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(253,250,252,0.94);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 32px;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) .nav { background: rgba(24,15,20,0.95); }
+    }
+    .nav__inner {
+      max-width: 860px; margin: 0 auto;
+      height: 60px; display: flex; align-items: center; justify-content: space-between;
+    }
+    .logo { display: flex; align-items: center; text-decoration: none; }
+    .logo img { height: 28px; width: auto; }
+    .nav__back { font-size: 13px; color: var(--fg-3); display: flex; align-items: center; gap: 6px; }
+
+    /* Page header */
+    .page-header {
+      max-width: 720px; margin: 0 auto;
+      padding: 64px 32px 48px;
+      border-bottom: 1px solid var(--border);
+    }
+    .page__eyebrow {
+      font-size: 10px; letter-spacing: 0.24em; text-transform: uppercase;
+      color: var(--rose); display: block; margin-bottom: 16px;
+    }
+    .page__title {
+      font-family: "Hiragino Mincho ProN","YuMincho",serif;
+      font-size: clamp(1.8rem, 4vw, 2.4rem);
+      font-weight: 400; letter-spacing: 0.03em;
+      color: var(--fg); margin-bottom: 16px;
+    }
+    .page__lead { font-size: 14px; color: var(--fg-2); line-height: 1.8; }
+
+    /* Form layout */
+    .form-wrap {
+      max-width: 720px; margin: 0 auto;
+      padding: 0 32px 120px;
+    }
+
+    .form-section {
+      padding: 48px 0 40px;
+      border-bottom: 1px solid var(--border);
+    }
+    .form-section:last-of-type { border-bottom: none; }
+
+    .form-section__title {
+      font-family: "Hiragino Mincho ProN","YuMincho",serif;
+      font-size: 1rem; font-weight: 500; letter-spacing: 0.06em;
+      color: var(--rose); margin-bottom: 32px;
+      display: flex; align-items: center; gap: 12px;
+    }
+    .form-section__title::after {
+      content: ''; flex: 1; height: 1px; background: var(--border);
+    }
+
+    .field { margin-bottom: 28px; }
+    .field:last-child { margin-bottom: 0; }
+
+    .field__label {
+      display: block;
+      font-size: 13px; font-weight: 600; letter-spacing: 0.04em;
+      color: var(--fg); margin-bottom: 8px;
+    }
+    .field__required {
+      display: inline-block;
+      font-size: 10px; color: #fff; background: var(--rose);
+      padding: 1px 6px; border-radius: 3px;
+      margin-left: 8px; vertical-align: middle; letter-spacing: 0.04em;
+    }
+    .field__optional {
+      display: inline-block;
+      font-size: 10px; color: var(--fg-3);
+      margin-left: 8px; letter-spacing: 0.04em;
+    }
+    .field__note { font-size: 12px; color: var(--fg-3); margin-top: 6px; }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    input[type="number"],
+    select,
+    textarea {
+      width: 100%;
+      background: var(--input-bg);
+      border: 1.5px solid var(--border);
+      border-radius: 8px;
+      padding: 12px 16px;
+      font-size: 15px;
+      color: var(--fg);
+      font-family: inherit;
+      transition: border-color 0.15s;
+      appearance: none;
+      -webkit-appearance: none;
+    }
+    input:focus, select:focus, textarea:focus {
+      outline: none;
+      border-color: var(--rose);
+    }
+    select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23b08898' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 14px center;
+      padding-right: 40px;
+      cursor: pointer;
+    }
+    textarea { resize: vertical; min-height: 100px; }
+
+    /* Two-column row */
+    .field-row {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+    }
+
+    /* Radio / checkbox group */
+    .radio-group, .check-group {
+      display: flex; flex-direction: column; gap: 10px;
+      margin-top: 4px;
+    }
+    .radio-group--row { flex-direction: row; flex-wrap: wrap; gap: 10px 20px; }
+
+    .radio-label, .check-label {
+      display: flex; align-items: center; gap: 10px;
+      font-size: 14px; color: var(--fg-2); cursor: pointer;
+    }
+    .radio-label input, .check-label input { width: auto; }
+
+    input[type="radio"], input[type="checkbox"] {
+      width: 18px; height: 18px;
+      accent-color: var(--rose);
+      flex-shrink: 0;
+      cursor: pointer;
+      border: none; padding: 0; border-radius: 0;
+    }
+
+    /* Conditional field */
+    .conditional { display: none; margin-top: 12px; }
+    .conditional.visible { display: block; }
+
+    /* Submit area */
+    .submit-area {
+      padding-top: 48px; text-align: center;
+    }
+    .submit-note {
+      font-size: 12px; color: var(--fg-3); margin-bottom: 24px; line-height: 1.8;
+    }
+    .btn-submit {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: var(--rose); color: #fff;
+      font-size: 15px; font-weight: 600; letter-spacing: 0.06em;
+      padding: 16px 48px; border-radius: 999px;
+      border: none; cursor: pointer;
+      transition: opacity 0.2s, transform 0.15s;
+      font-family: inherit;
+    }
+    .btn-submit:hover { opacity: 0.88; }
+    .btn-submit:active { transform: scale(0.98); }
+    .btn-submit:disabled { opacity: 0.5; cursor: not-allowed; }
+
+    /* Success state */
+    .success-msg {
+      display: none;
+      text-align: center;
+      padding: 80px 32px;
+      max-width: 560px; margin: 0 auto;
+    }
+    .success-msg.visible { display: block; }
+    .success-msg__icon {
+      width: 64px; height: 64px;
+      background: var(--rose-lt); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 24px;
+      color: var(--rose);
+    }
+    .success-msg h2 {
+      font-family: "Hiragino Mincho ProN","YuMincho",serif;
+      font-size: 1.5rem; font-weight: 400; margin-bottom: 16px; color: var(--fg);
+    }
+    .success-msg p { font-size: 14px; color: var(--fg-2); line-height: 1.9; }
+
+    /* Error message */
+    .error-msg {
+      display: none; margin-top: 16px;
+      color: #c0392b; font-size: 13px; text-align: center;
+    }
+    .error-msg.visible { display: block; }
+
+    /* Footer */
+    .footer {
+      text-align: center;
+      padding: 40px 32px;
+      border-top: 1px solid var(--border);
+      font-size: 13px; color: var(--fg-3);
+    }
+    .footer__links {
+      display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 20px;
+      margin-bottom: 16px;
+    }
+    .footer__links a { color: var(--fg-3); font-size: 12px; }
+    .footer__links a:hover { color: var(--rose); }
+
+    @media (max-width: 600px) {
+      .page-header, .form-wrap { padding-left: 20px; padding-right: 20px; }
+      .nav { padding: 0 20px; }
+      .field-row { grid-template-columns: 1fr; }
+      .radio-group--row { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav__inner">
+    <a href="/" class="logo">
+      <img src="assets/images/logo.svg" alt="miomio">
+    </a>
+    <a href="/" class="nav__back">← トップに戻る</a>
+  </div>
+</nav>
+
+<div class="page-header">
+  <span class="page__eyebrow">Apply</span>
+  <h1 class="page__title">サービス申し込み</h1>
+  <p class="page__lead">ご入力いただいた内容をもとに、担当の管理栄養士を選定いたします。<br>お申し込み後、Google Meet にて顔合わせのスケジュールをご連絡します。</p>
+</div>
+
+<div class="form-wrap">
+
+  <!-- Success message -->
+  <div class="success-msg" id="successMsg">
+    <div class="success-msg__icon">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+    </div>
+    <h2>お申し込みありがとうございます</h2>
+    <p>内容を確認のうえ、担当者より Google Meet の日程調整についてご連絡いたします。<br>通常2営業日以内にご連絡しております。</p>
+  </div>
+
+  <form id="applyForm" novalidate>
+
+    <!-- 基本情報 -->
+    <div class="form-section">
+      <h2 class="form-section__title">基本情報</h2>
+
+      <div class="field">
+        <label class="field__label" for="name">お名前<span class="field__required">必須</span></label>
+        <input type="text" id="name" name="name" placeholder="山田 花子" required>
+      </div>
+
+      <div class="field">
+        <label class="field__label" for="email">メールアドレス<span class="field__required">必須</span></label>
+        <input type="email" id="email" name="email" placeholder="example@email.com" required>
+      </div>
+
+      <div class="field">
+        <label class="field__label" for="phone">電話番号<span class="field__optional">任意</span></label>
+        <input type="tel" id="phone" name="phone" placeholder="090-0000-0000">
+      </div>
+
+      <div class="field-row">
+        <div class="field">
+          <label class="field__label" for="age">年代<span class="field__required">必須</span></label>
+          <select id="age" name="age" required>
+            <option value="">選択してください</option>
+            <option value="10代">10代</option>
+            <option value="20代">20代</option>
+            <option value="30代">30代</option>
+            <option value="40代">40代</option>
+            <option value="50代以上">50代以上</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label class="field__label" for="area">居住エリア<span class="field__required">必須</span></label>
+          <select id="area" name="area" required>
+            <option value="">都道府県を選択</option>
+            <option>北海道</option><option>青森県</option><option>岩手県</option><option>宮城県</option><option>秋田県</option><option>山形県</option><option>福島県</option>
+            <option>茨城県</option><option>栃木県</option><option>群馬県</option><option>埼玉県</option><option>千葉県</option><option>東京都</option><option>神奈川県</option>
+            <option>新潟県</option><option>富山県</option><option>石川県</option><option>福井県</option><option>山梨県</option><option>長野県</option><option>岐阜県</option>
+            <option>静岡県</option><option>愛知県</option><option>三重県</option><option>滋賀県</option><option>京都府</option><option>大阪府</option><option>兵庫県</option>
+            <option>奈良県</option><option>和歌山県</option><option>鳥取県</option><option>島根県</option><option>岡山県</option><option>広島県</option><option>山口県</option>
+            <option>徳島県</option><option>香川県</option><option>愛媛県</option><option>高知県</option><option>福岡県</option><option>佐賀県</option><option>長崎県</option>
+            <option>熊本県</option><option>大分県</option><option>宮崎県</option><option>鹿児島県</option><option>沖縄県</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <!-- 健康情報 -->
+    <div class="form-section">
+      <h2 class="form-section__title">健康情報</h2>
+
+      <div class="field-row">
+        <div class="field">
+          <label class="field__label" for="height">身長<span class="field__optional">任意</span></label>
+          <input type="number" id="height" name="height" placeholder="158" min="100" max="220">
+          <p class="field__note">cm</p>
+        </div>
+        <div class="field">
+          <label class="field__label" for="weight">現在の体重<span class="field__optional">任意</span></label>
+          <input type="number" id="weight" name="weight" placeholder="55" min="30" max="200">
+          <p class="field__note">kg</p>
+        </div>
+      </div>
+
+      <div class="field" style="max-width: 240px;">
+        <label class="field__label" for="target_weight">目標体重<span class="field__optional">任意</span></label>
+        <input type="number" id="target_weight" name="target_weight" placeholder="50" min="30" max="200">
+        <p class="field__note">kg</p>
+      </div>
+
+      <div class="field">
+        <label class="field__label">持病・アレルギー<span class="field__optional">任意</span></label>
+        <div class="radio-group--row radio-group">
+          <label class="radio-label">
+            <input type="radio" name="allergy_flag" value="なし" checked onchange="toggleAllergy(this)"> なし
+          </label>
+          <label class="radio-label">
+            <input type="radio" name="allergy_flag" value="あり" onchange="toggleAllergy(this)"> あり
+          </label>
+        </div>
+        <div class="conditional" id="allergyDetail">
+          <textarea name="allergy" placeholder="持病・アレルギーの内容を入力してください" rows="3"></textarea>
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="field__label">運動習慣<span class="field__optional">任意</span></label>
+        <div class="radio-group">
+          <label class="radio-label"><input type="radio" name="exercise" value="ほぼなし"> ほぼなし</label>
+          <label class="radio-label"><input type="radio" name="exercise" value="週1〜2回"> 週1〜2回</label>
+          <label class="radio-label"><input type="radio" name="exercise" value="週3回以上"> 週3回以上</label>
+        </div>
+      </div>
+    </div>
+
+    <!-- 目標・動機 -->
+    <div class="form-section">
+      <h2 class="form-section__title">目標・動機</h2>
+
+      <div class="field">
+        <label class="field__label" for="goal">相談したいこと・目標<span class="field__required">必須</span></label>
+        <textarea id="goal" name="goal" placeholder="例：産後から体重が戻らず、食事管理を一緒にしてほしい。PMSがひどくて食事で改善できるか相談したい。" rows="5" required></textarea>
+      </div>
+
+      <div class="field">
+        <label class="field__label" for="source">miomio を知ったきっかけ<span class="field__optional">任意</span></label>
+        <select id="source" name="source">
+          <option value="">選択してください</option>
+          <option>Instagram</option>
+          <option>X（Twitter）</option>
+          <option>Google検索</option>
+          <option>知人・友人の紹介</option>
+          <option>その他</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- サービス -->
+    <div class="form-section">
+      <h2 class="form-section__title">サービス</h2>
+
+      <div class="field">
+        <label class="field__label">ご希望のプラン<span class="field__required">必須</span></label>
+        <div class="radio-group">
+          <label class="radio-label"><input type="radio" name="plan" value="24時間お試し（無料）" required> 24時間お試し（無料・クレジットカード不要）</label>
+          <label class="radio-label"><input type="radio" name="plan" value="ライトプラン（¥5,000/月）"> ライトプラン ¥5,000/月（税抜）</label>
+          <label class="radio-label"><input type="radio" name="plan" value="プレミアムプラン（¥15,000/月）"> プレミアムプラン ¥15,000/月（税抜）</label>
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="field__label" for="meet1">Meet 希望日時 第1希望<span class="field__required">必須</span></label>
+        <input type="text" id="meet1" name="meet1" placeholder="例：8月中旬 平日 10〜12時" required>
+      </div>
+
+      <div class="field">
+        <label class="field__label" for="meet2">Meet 希望日時 第2希望<span class="field__optional">任意</span></label>
+        <input type="text" id="meet2" name="meet2" placeholder="例：8月下旬 土日 いつでも">
+      </div>
+    </div>
+
+    <div class="submit-area">
+      <p class="submit-note">
+        送信をもって<a href="terms.html">利用規約</a>および<a href="privacy.html">プライバシーポリシー</a>に同意したものとみなします。<br>
+        本サービスは女性専用です。男性のお申し込みはお受けできません。
+      </p>
+      <button type="submit" class="btn-submit" id="submitBtn">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+        申し込みを送信する
+      </button>
+      <p class="error-msg" id="errorMsg">送信に失敗しました。時間をおいて再度お試しください。</p>
+    </div>
+
+  </form>
+</div>
+
+<footer class="footer">
+  <div class="footer__links">
+    <a href="terms.html">利用規約</a>
+    <a href="privacy.html">プライバシーポリシー</a>
+    <a href="tokusho.html">特定商取引法に基づく表記</a>
+  </div>
+  © 2025 miomio / 合同会社 About The Engineer. All rights reserved.
+</footer>
+
+<script>
+  function toggleAllergy(radio) {
+    document.getElementById('allergyDetail').classList.toggle('visible', radio.value === 'あり');
+  }
+
+  const form = document.getElementById('applyForm');
+  const submitBtn = document.getElementById('submitBtn');
+  const successMsg = document.getElementById('successMsg');
+  const errorMsg = document.getElementById('errorMsg');
+  const endpoint = atob('aHR0cHM6Ly9zY3JpcHQuZ29vZ2xlLmNvbS9tYWNyb3MvQUt' +
+    'meWNieWYwcDJoLXl0WVhTLWZiQS1ubjVYR1FORXBRUm9KTjRXWFg3TnFNaHdIbTdZVlJU' +
+    'a2lxOWtjdVZCYnE5WEVIT2RvL2V4ZWM=');
+
+  form.addEventListener('submit', async e => {
+    e.preventDefault();
+
+    const required = form.querySelectorAll('[required]');
+    let valid = true;
+    required.forEach(el => {
+      if (el.type === 'radio') {
+        const group = form.querySelectorAll(`[name="${el.name}"]`);
+        if (![...group].some(r => r.checked)) valid = false;
+      } else if (!el.value.trim()) {
+        el.style.borderColor = 'var(--rose)';
+        valid = false;
+      } else {
+        el.style.borderColor = '';
+      }
+    });
+    if (!valid) return;
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = '送信中...';
+    errorMsg.classList.remove('visible');
+
+    try {
+      await fetch(endpoint, {
+        method: 'POST',
+        mode: 'no-cors',
+        body: new FormData(form)
+      });
+      form.style.display = 'none';
+      successMsg.classList.add('visible');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } catch {
+      errorMsg.classList.add('visible');
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg> 申し込みを送信する';
+    }
+  });
+</script>
+
+</body>
+</html>
