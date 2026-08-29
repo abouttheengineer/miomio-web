@@ -289,7 +289,7 @@
 
       <div class="field">
         <label class="field__label" for="name">お名前<span class="field__required">必須</span></label>
-        <input type="text" id="name" name="name" placeholder="山田 花子" required>
+        <input type="text" id="name" name="お名前" placeholder="山田 花子" required>
       </div>
 
       <div class="field">
@@ -299,13 +299,13 @@
 
       <div class="field">
         <label class="field__label" for="phone">電話番号<span class="field__optional">任意</span></label>
-        <input type="tel" id="phone" name="phone" placeholder="090-0000-0000">
+        <input type="tel" id="phone" name="電話番号" placeholder="090-0000-0000">
       </div>
 
       <div class="field-row">
         <div class="field">
           <label class="field__label" for="age">年代<span class="field__required">必須</span></label>
-          <select id="age" name="age" required>
+          <select id="age" name="年代" required>
             <option value="">選択してください</option>
             <option value="10代">10代</option>
             <option value="20代">20代</option>
@@ -317,7 +317,7 @@
 
         <div class="field">
           <label class="field__label" for="area">居住エリア<span class="field__required">必須</span></label>
-          <select id="area" name="area" required>
+          <select id="area" name="居住エリア" required>
             <option value="">都道府県を選択</option>
             <option>北海道</option><option>青森県</option><option>岩手県</option><option>宮城県</option><option>秋田県</option><option>山形県</option><option>福島県</option>
             <option>茨城県</option><option>栃木県</option><option>群馬県</option><option>埼玉県</option><option>千葉県</option><option>東京都</option><option>神奈川県</option>
@@ -338,19 +338,19 @@
       <div class="field-row">
         <div class="field">
           <label class="field__label" for="height">身長<span class="field__optional">任意</span></label>
-          <input type="number" id="height" name="height" placeholder="158" min="100" max="220">
+          <input type="number" id="height" name="身長(cm)" placeholder="158" min="100" max="220">
           <p class="field__note">cm</p>
         </div>
         <div class="field">
           <label class="field__label" for="weight">現在の体重<span class="field__optional">任意</span></label>
-          <input type="number" id="weight" name="weight" placeholder="55" min="30" max="200">
+          <input type="number" id="weight" name="現在の体重(kg)" placeholder="55" min="30" max="200">
           <p class="field__note">kg</p>
         </div>
       </div>
 
       <div class="field" style="max-width: 240px;">
         <label class="field__label" for="target_weight">目標体重<span class="field__optional">任意</span></label>
-        <input type="number" id="target_weight" name="target_weight" placeholder="50" min="30" max="200">
+        <input type="number" id="target_weight" name="目標体重(kg)" placeholder="50" min="30" max="200">
         <p class="field__note">kg</p>
       </div>
 
@@ -358,23 +358,23 @@
         <label class="field__label">持病・アレルギー<span class="field__optional">任意</span></label>
         <div class="radio-group--row radio-group">
           <label class="radio-label">
-            <input type="radio" name="allergy_flag" value="なし" checked onchange="toggleAllergy(this)"> なし
+            <input type="radio" name="持病・アレルギー" value="なし" checked onchange="toggleAllergy(this)"> なし
           </label>
           <label class="radio-label">
-            <input type="radio" name="allergy_flag" value="あり" onchange="toggleAllergy(this)"> あり
+            <input type="radio" name="持病・アレルギー" value="あり" onchange="toggleAllergy(this)"> あり
           </label>
         </div>
         <div class="conditional" id="allergyDetail">
-          <textarea name="allergy" placeholder="持病・アレルギーの内容を入力してください" rows="3"></textarea>
+          <textarea name="持病・アレルギー詳細" placeholder="持病・アレルギーの内容を入力してください" rows="3"></textarea>
         </div>
       </div>
 
       <div class="field">
         <label class="field__label">運動習慣<span class="field__optional">任意</span></label>
         <div class="radio-group">
-          <label class="radio-label"><input type="radio" name="exercise" value="ほぼなし"> ほぼなし</label>
-          <label class="radio-label"><input type="radio" name="exercise" value="週1〜2回"> 週1〜2回</label>
-          <label class="radio-label"><input type="radio" name="exercise" value="週3回以上"> 週3回以上</label>
+          <label class="radio-label"><input type="radio" name="運動習慣" value="ほぼなし"> ほぼなし</label>
+          <label class="radio-label"><input type="radio" name="運動習慣" value="週1〜2回"> 週1〜2回</label>
+          <label class="radio-label"><input type="radio" name="運動習慣" value="週3回以上"> 週3回以上</label>
         </div>
       </div>
     </div>
@@ -385,12 +385,12 @@
 
       <div class="field">
         <label class="field__label" for="goal">相談したいこと・目標<span class="field__required">必須</span></label>
-        <textarea id="goal" name="goal" placeholder="例：産後から体重が戻らず、食事管理を一緒にしてほしい。PMSがひどくて食事で改善できるか相談したい。" rows="5" required></textarea>
+        <textarea id="goal" name="相談したいこと・目標" placeholder="例：産後から体重が戻らず、食事管理を一緒にしてほしい。PMSがひどくて食事で改善できるか相談したい。" rows="5" required></textarea>
       </div>
 
       <div class="field">
         <label class="field__label" for="source">miomio を知ったきっかけ<span class="field__optional">任意</span></label>
-        <select id="source" name="source">
+        <select id="source" name="きっかけ">
           <option value="">選択してください</option>
           <option>Instagram</option>
           <option>X（Twitter）</option>
@@ -408,20 +408,20 @@
       <div class="field">
         <label class="field__label">ご希望のプラン<span class="field__required">必須</span></label>
         <div class="radio-group">
-          <label class="radio-label"><input type="radio" name="plan" value="24時間お試し（無料）" required> 24時間お試し（無料・クレジットカード不要）</label>
-          <label class="radio-label"><input type="radio" name="plan" value="ライトプラン（¥5,000/月）"> ライトプラン ¥5,000/月（税抜）</label>
-          <label class="radio-label"><input type="radio" name="plan" value="プレミアムプラン（¥15,000/月）"> プレミアムプラン ¥15,000/月（税抜）</label>
+          <label class="radio-label"><input type="radio" name="希望プラン" value="24時間お試し（無料）" required> 24時間お試し（無料・クレジットカード不要）</label>
+          <label class="radio-label"><input type="radio" name="希望プラン" value="ライトプラン（¥5,000/月）"> ライトプラン ¥5,000/月（税抜）</label>
+          <label class="radio-label"><input type="radio" name="希望プラン" value="プレミアムプラン（¥15,000/月）"> プレミアムプラン ¥15,000/月（税抜）</label>
         </div>
       </div>
 
       <div class="field">
         <label class="field__label" for="meet1">Meet 希望日時 第1希望<span class="field__required">必須</span></label>
-        <input type="text" id="meet1" name="meet1" placeholder="例：8月中旬 平日 10〜12時" required>
+        <input type="text" id="meet1" name="Meet希望日時（第1希望）" placeholder="例：8月中旬 平日 10〜12時" required>
       </div>
 
       <div class="field">
         <label class="field__label" for="meet2">Meet 希望日時 第2希望<span class="field__optional">任意</span></label>
-        <input type="text" id="meet2" name="meet2" placeholder="例：8月下旬 土日 いつでも">
+        <input type="text" id="meet2" name="Meet希望日時（第2希望）" placeholder="例：8月下旬 土日 いつでも">
       </div>
     </div>
 
@@ -467,7 +467,7 @@
     let valid = true;
     required.forEach(el => {
       if (el.type === 'radio') {
-        const group = form.querySelectorAll(`[name="${el.name}"]`);
+        const group = form.querySelectorAll(`[name="${CSS.escape(el.name)}"]`);
         if (![...group].some(r => r.checked)) valid = false;
       } else if (!el.value.trim()) {
         el.style.borderColor = 'var(--rose)';
