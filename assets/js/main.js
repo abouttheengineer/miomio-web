@@ -46,14 +46,36 @@ if (hero && stickyCTA) {
   observer.observe(hero);
 }
 
-/* ── Contact form feedback ───────────────────────────────── */
-const form = document.querySelector('.contact-form');
-if (form) {
-  form.addEventListener('submit', e => {
-    const action = form.getAttribute('action') || '';
-    if (action.includes('YOUR_FORM_ID')) {
-      e.preventDefault();
-      alert('送信先のURLを設定してください（Formspree等）');
+/* ── Contact form (Ajax) ─────────────────────────────────── */
+const contactForm = document.getElementById('contactForm');
+if (contactForm) {
+  contactForm.addEventListener('submit', async e => {
+    e.preventDefault();
+    const btn = document.getElementById('contactSubmitBtn');
+    const successEl = document.getElementById('contactSuccess');
+    const errorEl = document.getElementById('contactError');
+
+    btn.disabled = true;
+    btn.textContent = '送信中...';
+    errorEl.style.display = 'none';
+
+    try {
+      const res = await fetch('https://formspree.io/f/xljrkrbk', {
+        method: 'POST',
+        headers: { 'Accept': 'application/json' },
+        body: new FormData(contactForm)
+      });
+      if (res.ok) {
+        contactForm.querySelectorAll('input, textarea').forEach(el => el.value = '');
+        successEl.style.display = 'block';
+        btn.style.display = 'none';
+      } else {
+        throw new Error();
+      }
+    } catch {
+      errorEl.style.display = 'block';
+      btn.disabled = false;
+      btn.textContent = '送信する';
     }
   });
 }

@@ -398,22 +398,23 @@
       <span class="section__eyebrow">Contact</span>
       <h2 class="section__title">お問い合わせ</h2>
       <p class="contact__sub">ご質問・ご相談はお気軽にどうぞ。通常1〜2営業日以内にご返信いたします。</p>
-      <!-- Formspreeなど外部サービスと連携する場合、actionのURLを書き換えてください -->
-      <form class="contact-form" action="https://formspree.io/f/xljrkrbk" method="POST">
+      <form class="contact-form" id="contactForm" novalidate>
         <div class="form-group">
-          <label for="name">お名前</label>
-          <input type="text" id="name" name="name" required placeholder="山田 太郎" autocomplete="name">
+          <label for="c-name">お名前</label>
+          <input type="text" id="c-name" name="お名前" required placeholder="山田 花子" autocomplete="name">
         </div>
         <div class="form-group">
-          <label for="email">メールアドレス</label>
-          <input type="email" id="email" name="email" required placeholder="example@email.com" autocomplete="email">
+          <label for="c-email">メールアドレス</label>
+          <input type="email" id="c-email" name="email" required placeholder="example@email.com" autocomplete="email">
         </div>
         <div class="form-group">
-          <label for="message">メッセージ</label>
-          <textarea id="message" name="message" required rows="5" placeholder="ご質問内容をご記入ください"></textarea>
+          <label for="c-message">メッセージ</label>
+          <textarea id="c-message" name="メッセージ" required rows="5" placeholder="ご質問内容をご記入ください"></textarea>
         </div>
-        <button type="submit" class="btn btn--primary form-submit">送信する</button>
+        <button type="submit" class="btn btn--primary form-submit" id="contactSubmitBtn">送信する</button>
         <p class="form-notice">送信いただいた情報はお問い合わせ対応以外には使用しません。</p>
+        <p class="form-success" id="contactSuccess" style="display:none;color:var(--primary);font-weight:600;margin-top:16px;">送信しました。1〜2営業日以内にご返信いたします。</p>
+        <p class="form-error" id="contactError" style="display:none;color:#c0392b;font-size:13px;margin-top:12px;">送信に失敗しました。時間をおいて再度お試しください。</p>
       </form>
     </div>
   </section>
