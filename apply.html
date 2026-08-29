@@ -458,7 +458,7 @@
   const submitBtn = document.getElementById('submitBtn');
   const successMsg = document.getElementById('successMsg');
   const errorMsg = document.getElementById('errorMsg');
-  const endpoint = atob('aHR0cHM6Ly9zY3JpcHQuZ29vZ2xlLmNvbS9tYWNyb3Mvcy9BS2Z5Y2J5ZjBwMmgteXRZWFMtZmJBLW5uNVhHUU5FcFFSb0pONFdYWDdOcU1od0htN1lWUlRraXE5a2N1VkJicTlYRUhPZG8vZXhlYw==');
+  const ENDPOINT = 'https://formspree.io/f/xljrkrbk';
 
   form.addEventListener('submit', async e => {
     e.preventDefault();
@@ -483,14 +483,18 @@
     errorMsg.classList.remove('visible');
 
     try {
-      const params = new URLSearchParams(new FormData(form));
-      await fetch(endpoint + '?' + params.toString(), {
-        method: 'GET',
-        mode: 'no-cors'
+      const res = await fetch(ENDPOINT, {
+        method: 'POST',
+        headers: { 'Accept': 'application/json' },
+        body: new FormData(form)
       });
-      form.style.display = 'none';
-      successMsg.classList.add('visible');
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      if (res.ok) {
+        form.style.display = 'none';
+        successMsg.classList.add('visible');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else {
+        throw new Error();
+      }
     } catch {
       errorMsg.classList.add('visible');
       submitBtn.disabled = false;
